@@ -33,3 +33,8 @@ class UserRepository:
         result = self.db.execute("SELECT * FROM users WHERE id = last_insert_id()")
 
         return result[0]
+
+    def getContactList(self):
+        result = self.db.execute("SELECT username, phone_number FROM users")
+
+        return result

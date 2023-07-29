@@ -1,4 +1,5 @@
 from .AddUserUseCase import AddUserUseCase
+from .GetContactList import GetContactList
 
 from .AddFamilyUseCase import AddFamilyUseCase
 from .UpdateFamilyUseCase import UpdateFamilyUseCase

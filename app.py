@@ -67,6 +67,13 @@ app.add_url_rule(
     methods=["POST"],
 )
 
+app.add_url_rule(
+    "/users/contacts",
+    endpoint="userHandler.getContactList",
+    view_func=userHandler.getContactList,
+    methods=["GET"],
+)
+
 # Family Routes
 app.add_url_rule(
     "/family",
@@ -74,6 +81,7 @@ app.add_url_rule(
     view_func=familyHandler.postFamily,
     methods=["POST"],
 )
+
 
 app.add_url_rule(
     "/family",
