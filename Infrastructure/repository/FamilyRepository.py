@@ -1,10 +1,11 @@
 from Domain.family.entities import AddFamily
 from nanoid import generate
 from Commons.exceptions import InvariantError
+from Infrastructure.database.DatabaseService import Database
 
 
 class FamilyRepository:
-    def __init__(self, database):
+    def __init__(self, database: Database):
         self.db = database
 
     def getFamilyById(self, id):
