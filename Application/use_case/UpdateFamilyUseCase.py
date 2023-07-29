@@ -9,11 +9,9 @@ class UpdateFamilyUseCase:
     def execute(self, request):
         update_family = UpdateFamily(**request)
 
-        self.family_repository.getFamilyById(update_family.id)
-        self.family_repository.updateCoOwner(
-            update_family.id, update_family.owner_id, update_family.co_owner_id
-        )
-        added_family = self.family_repository.getFamilyById(update_family.id)
+        self.family_repository.getFamilyByOwnerId(update_family.owner_id)
+        self.family_repository.updateCoOwner(update_family)
+        added_family = self.family_repository.getFamilyByOwnerId(update_family.owner_id)
         result = AddedFamily(*added_family)
 
         return result.__dict__
