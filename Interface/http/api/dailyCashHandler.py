@@ -9,6 +9,7 @@ class DailyCashHandler:
 
     def postDailyCash(self, user_id):
         request_body = request.get_json()
+        request_body["user_id"] = user_id
         response_data = AddDailyCashUseCase(self.daily_cash_repository).execute(
             request_body
         )

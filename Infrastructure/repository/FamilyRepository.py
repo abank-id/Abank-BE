@@ -1,4 +1,4 @@
-from Domain.family.entities import AddFamily
+from Domain.family.entities import AddFamily, UpdateFamily
 from nanoid import generate
 from Commons.exceptions import InvariantError
 from Infrastructure.database.DatabaseService import Database
@@ -8,8 +8,10 @@ class FamilyRepository:
     def __init__(self, database: Database):
         self.db = database
 
-    def getFamilyById(self, id):
-        result = self.db.execute("SELECT * FROM family WHERE id = %s LIMIT 1", (id,))
+    def getFamilyByOwnerId(self, owner_id):
+        result = self.db.execute(
+            "SELECT * FROM family WHERE owner_id = %s LIMIT 1", (owner_id,)
+        )
 
         return result[0]
 
@@ -43,10 +45,10 @@ class FamilyRepository:
 
         return result[0]
 
-    def updateCoOwner(self, id, owner_id, co_owner_id):
+    def updateCoOwner(self, update_family: UpdateFamily):
         result = self.db.execute(
-            "UPDATE family SET co_owner_id = %s WHERE owner_id = %s AND id = %s",
-            (co_owner_id, owner_id, id),
+            "UPDATE family SET co_owner_id = %s WHERE owner_id = %s",
+            (update_family.co_owner_id, update_family.owner_id),
         )
 
-        return owner_id
+        return update_family

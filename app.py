@@ -84,7 +84,7 @@ app.add_url_rule(
 
 # Family Member Routes
 app.add_url_rule(
-    "/family/<int:family_id>",
+    "/family/<int:family_id>/member",
     endpoint="familyMemberHandler.postFamilyMember",
     view_func=familyMemberHandler.postFamilyMember,
     methods=["POST"],
