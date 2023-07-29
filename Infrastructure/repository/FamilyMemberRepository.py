@@ -1,9 +1,10 @@
 from Commons.exceptions import InvariantError
 from Domain.family.entities import AddFamilyMember
+from Infrastructure.database.DatabaseService import Database
 
 
 class FamilyMemberRepository:
-    def __init__(self, database):
+    def __init__(self, database: Database):
         self.db = database
 
     def getFamilyByUserId(self, user_id):
