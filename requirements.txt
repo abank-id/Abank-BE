@@ -1,4 +1,4 @@
-flaskflask
+flask
 python-dotenv
 mysql-connector-python
 nanoid
