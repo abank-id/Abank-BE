@@ -1,6 +1,6 @@
 from Commons.exceptions import InvariantError
-from Domain.family.entities import AddFamilyMember
-from Infrastructure.database.DatabaseService import Database
+from Domain.family_member.entities import AddFamilyMember
+from Infrastructure.database import Database
 
 
 class FamilyMemberRepository:
@@ -41,12 +41,16 @@ class FamilyMemberRepository:
 
         return result[0]
 
-    # def getFamilyMember(self, family_id):
-    #     result = self.db.execute(
-    #         "SELECT owner_id FROM family_member WHERE family_id = %s", (family_id,)
-    #     )
+    def getFamilyMember(self, family_id):
+        result = self.db.execute(
+            """SELECT u.id ,u.username, dc.spending, fm.daily_limit 
+            FROM family_member fm INNER JOIN users u ON fm.user_id = u.id 
+            INNER JOIN daily_cash dc ON fm.user_id = dc.user_id 
+            WHERE fm.family_id = %s""",
+            (family_id,),
+        )
 
-    #     return result
+        return result
 
     # def updateDailyBudget(self, owner_id, family_id, daily_budget):
     #     self.db.execute(

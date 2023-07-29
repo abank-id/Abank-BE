@@ -55,7 +55,7 @@ from Interface.http.api import (
 
 userHandler = UserHandler(user)
 familyHandler = FamilyHandler(family)
-familyMemberHandler = FamilyMemberHandler(familyMember)
+familyMemberHandler = FamilyMemberHandler(familyMember, family)
 dailyCashHandler = DailyCashHandler(dailyCash)
 
 # Routes
@@ -90,12 +90,26 @@ app.add_url_rule(
     methods=["PUT"],
 )
 
+app.add_url_rule(
+    "/family",
+    endpoint="familyHandler.getFamilyByOwnerId",
+    view_func=familyHandler.getFamilyByOwnerId,
+    methods=["GET"],
+)
+
 # Family Member Routes
 app.add_url_rule(
     "/family/<int:family_id>/member",
     endpoint="familyMemberHandler.postFamilyMember",
     view_func=familyMemberHandler.postFamilyMember,
     methods=["POST"],
+)
+
+app.add_url_rule(
+    "/family/<int:family_id>/member",
+    endpoint="familyMemberHandler.getFamilyMember",
+    view_func=familyMemberHandler.getFamilyMember,
+    methods=["GET"],
 )
 
 # Daily Cash Routes

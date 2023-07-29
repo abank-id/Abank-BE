@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from Application.use_case import AddUserUseCase, GetContactList
+from Application.use_case import AddUserUseCase, GetContactListUseCase
 from Infrastructure.repository import UserRepository
 
 
@@ -17,7 +17,7 @@ class UserHandler:
         return jsonify(response), 200
 
     def getContactList(self):
-        response_data = GetContactList(self.user_repository).execute()
+        response_data = GetContactListUseCase(self.user_repository).execute()
 
         response = {"status": "success", "data": response_data}
 

@@ -1,6 +1,6 @@
 from Commons.exceptions import InvariantError
 from Infrastructure.repository import FamilyMemberRepository
-from Domain.family.entities import AddFamilyMember, AddedFamilyMember
+from Domain.family_member.entities import AddFamilyMember, AddedFamilyMember
 
 
 class AddFamilyMemberUseCase:

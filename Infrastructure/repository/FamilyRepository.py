@@ -46,9 +46,16 @@ class FamilyRepository:
         return result[0]
 
     def updateCoOwner(self, update_family: UpdateFamily):
-        result = self.db.execute(
+        self.db.execute(
             "UPDATE family SET co_owner_id = %s WHERE owner_id = %s",
             (update_family.co_owner_id, update_family.owner_id),
         )
 
         return update_family
+
+    def getFamilyById(self, family_id):
+        result = self.db.execute(
+            "SELECT * FROM family WHERE id = %s LIMIT 1", (family_id,)
+        )
+
+        return result[0]

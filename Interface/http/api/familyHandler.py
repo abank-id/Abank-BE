@@ -1,5 +1,5 @@
 from flask import request, jsonify
-from Application.use_case import AddFamilyUseCase, UpdateFamilyUseCase
+from Application.use_case import AddFamilyUseCase, GetFamilyUseCase, UpdateFamilyUseCase
 from Infrastructure.repository import FamilyRepository
 
 
@@ -21,6 +21,15 @@ class FamilyHandler:
         response_data = UpdateFamilyUseCase(self.family_repository).execute(
             request_body
         )
+        print(response_data)
+
+        response = {"status": "success", "data": response_data}
+
+        return jsonify(response), 200
+
+    def getFamilyByOwnerId(self):
+        request_body = request.get_json()
+        response_data = GetFamilyUseCase(self.family_repository).execute(request_body)
         print(response_data)
 
         response = {"status": "success", "data": response_data}
