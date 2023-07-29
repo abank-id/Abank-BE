@@ -1,5 +1,0 @@
-*.crt.pem
-.env
-__pycache__
-*.py[cod]
-.vscode
